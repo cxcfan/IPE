@@ -1,0 +1,696 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>IPEMainClass</class>
+ <widget class="QMainWindow" name="IPEMainClass">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>742</width>
+    <height>574</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>IPE</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="ipemain.qrc">
+    <normaloff>:/IPEMain/Resources/Icons/ICON.png</normaloff>:/IPEMain/Resources/Icons/ICON.png</iconset>
+  </property>
+  <widget class="IPEWidget" name="centralWidget">
+   <property name="acceptDrops">
+    <bool>true</bool>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout"/>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>742</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu_File">
+    <property name="title">
+     <string>&amp;File</string>
+    </property>
+    <addaction name="actionOpen"/>
+    <addaction name="actionSave"/>
+    <addaction name="actionSave_As"/>
+    <addaction name="separator"/>
+    <addaction name="actionExit"/>
+   </widget>
+   <widget class="QMenu" name="menuEdit">
+    <property name="title">
+     <string>&amp;Edit</string>
+    </property>
+    <addaction name="actionMove_Canvas"/>
+    <addaction name="actionClockwise_Rotate"/>
+    <addaction name="actionCounterclockwise_Rotate"/>
+    <addaction name="separator"/>
+    <addaction name="actionSelection"/>
+    <addaction name="actionRotate"/>
+    <addaction name="actionZoom"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>&amp;Help</string>
+    </property>
+    <addaction name="actionAbout"/>
+   </widget>
+   <widget class="QMenu" name="menuCurve">
+    <property name="title">
+     <string>&amp;Image</string>
+    </property>
+    <widget class="QMenu" name="menuHistogram">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="title">
+      <string>Histogram</string>
+     </property>
+     <addaction name="actionEqualization"/>
+     <addaction name="actionMatching"/>
+    </widget>
+    <widget class="QMenu" name="menuFilter">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="title">
+      <string>Filter</string>
+     </property>
+     <widget class="QMenu" name="menuBlur">
+      <property name="title">
+       <string>Blur</string>
+      </property>
+      <addaction name="actionAverage"/>
+      <addaction name="actionMedian"/>
+     </widget>
+     <widget class="QMenu" name="menuSharpen">
+      <property name="title">
+       <string>Sharpen</string>
+      </property>
+      <addaction name="actionRobert"/>
+      <addaction name="actionPrewitt"/>
+      <addaction name="actionSobel"/>
+      <addaction name="actionLaplace"/>
+     </widget>
+     <addaction name="menuBlur"/>
+     <addaction name="menuSharpen"/>
+    </widget>
+    <addaction name="actionCurve"/>
+    <addaction name="menuHistogram"/>
+    <addaction name="menuFilter"/>
+    <addaction name="actionFFT"/>
+   </widget>
+   <addaction name="menu_File"/>
+   <addaction name="menuEdit"/>
+   <addaction name="menuCurve"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionOpen"/>
+   <addaction name="actionSave"/>
+   <addaction name="actionSave_As"/>
+   <addaction name="separator"/>
+   <addaction name="actionMove_Canvas"/>
+   <addaction name="actionClockwise_Rotate"/>
+   <addaction name="actionCounterclockwise_Rotate"/>
+   <addaction name="separator"/>
+   <addaction name="actionSelection"/>
+   <addaction name="actionRotate"/>
+   <addaction name="actionZoom"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionOpen">
+   <property name="icon">
+    <iconset resource="ipemain.qrc">
+     <normaloff>:/IPEMain/Resources/Icons/OPENIcon.png</normaloff>:/IPEMain/Resources/Icons/OPENIcon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Open...</string>
+   </property>
+  </action>
+  <action name="actionSave">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="ipemain.qrc">
+     <normaloff>:/IPEMain/Resources/Icons/SAVEIcon.png</normaloff>:/IPEMain/Resources/Icons/SAVEIcon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Save...</string>
+   </property>
+  </action>
+  <action name="actionSave_As">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="ipemain.qrc">
+     <normaloff>:/IPEMain/Resources/Icons/SAVEASIcon.png</normaloff>:/IPEMain/Resources/Icons/SAVEASIcon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Save As...</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="icon">
+    <iconset resource="ipemain.qrc">
+     <normaloff>:/IPEMain/Resources/Icons/EXITIcon.png</normaloff>:/IPEMain/Resources/Icons/EXITIcon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Exit</string>
+   </property>
+  </action>
+  <action name="actionSelection">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="ipemain.qrc">
+     <normaloff>:/IPEMain/Resources/Icons/SelectionICON.png</normaloff>:/IPEMain/Resources/Icons/SelectionICON.png</iconset>
+   </property>
+   <property name="text">
+    <string>Selection</string>
+   </property>
+  </action>
+  <action name="actionMove_Canvas">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="ipemain.qrc">
+     <normaloff>:/IPEMain/Resources/Icons/moveCanvasICON.png</normaloff>:/IPEMain/Resources/Icons/moveCanvasICON.png</iconset>
+   </property>
+   <property name="text">
+    <string>Move Canvas</string>
+   </property>
+  </action>
+  <action name="actionRotate">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="ipemain.qrc">
+     <normaloff>:/IPEMain/Resources/Icons/rotateICON.png</normaloff>:/IPEMain/Resources/Icons/rotateICON.png</iconset>
+   </property>
+   <property name="text">
+    <string>Rotate</string>
+   </property>
+  </action>
+  <action name="actionClockwise_Rotate">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="ipemain.qrc">
+     <normaloff>:/IPEMain/Resources/Icons/rotateRICON.png</normaloff>:/IPEMain/Resources/Icons/rotateRICON.png</iconset>
+   </property>
+   <property name="text">
+    <string>Clockwise Rotate</string>
+   </property>
+  </action>
+  <action name="actionCounterclockwise_Rotate">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="ipemain.qrc">
+     <normaloff>:/IPEMain/Resources/Icons/rotateLICON.png</normaloff>:/IPEMain/Resources/Icons/rotateLICON.png</iconset>
+   </property>
+   <property name="text">
+    <string>Counterclockwise Rotate</string>
+   </property>
+  </action>
+  <action name="actionZoom">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="ipemain.qrc">
+     <normaloff>:/IPEMain/Resources/Icons/zoomICON.png</normaloff>:/IPEMain/Resources/Icons/zoomICON.png</iconset>
+   </property>
+   <property name="text">
+    <string>Zoom</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>About...</string>
+   </property>
+  </action>
+  <action name="actionCurve">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Curve...</string>
+   </property>
+  </action>
+  <action name="actionEqualization">
+   <property name="text">
+    <string>Equalization...</string>
+   </property>
+  </action>
+  <action name="actionMatching">
+   <property name="text">
+    <string>Matching...</string>
+   </property>
+  </action>
+  <action name="actionAverage">
+   <property name="text">
+    <string>Average</string>
+   </property>
+  </action>
+  <action name="actionRobert">
+   <property name="text">
+    <string>Robert</string>
+   </property>
+  </action>
+  <action name="actionPrewitt">
+   <property name="text">
+    <string>Prewitt</string>
+   </property>
+  </action>
+  <action name="actionSobel">
+   <property name="text">
+    <string>Sobel</string>
+   </property>
+  </action>
+  <action name="actionLaplace">
+   <property name="text">
+    <string>Laplace</string>
+   </property>
+  </action>
+  <action name="actionMedian">
+   <property name="text">
+    <string>Median</string>
+   </property>
+  </action>
+  <action name="actionFFT">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>DFT...</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>IPEWidget</class>
+   <extends>QWidget</extends>
+   <header>ipewidget.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="ipemain.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>actionOpen</sender>
+   <signal>triggered()</signal>
+   <receiver>IPEMainClass</receiver>
+   <slot>openImageFile()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>354</x>
+     <y>263</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionSave</sender>
+   <signal>triggered()</signal>
+   <receiver>IPEMainClass</receiver>
+   <slot>saveImageFile()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>354</x>
+     <y>263</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionExit</sender>
+   <signal>triggered()</signal>
+   <receiver>IPEMainClass</receiver>
+   <slot>exitApp()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>370</x>
+     <y>286</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionSelection</sender>
+   <signal>triggered()</signal>
+   <receiver>centralWidget</receiver>
+   <slot>setSelectionStatus()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>370</x>
+     <y>304</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionMove_Canvas</sender>
+   <signal>triggered()</signal>
+   <receiver>centralWidget</receiver>
+   <slot>setMoveCanvasStatus()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>370</x>
+     <y>304</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionRotate</sender>
+   <signal>triggered()</signal>
+   <receiver>centralWidget</receiver>
+   <slot>setRotateStatus()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>370</x>
+     <y>304</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionClockwise_Rotate</sender>
+   <signal>triggered()</signal>
+   <receiver>centralWidget</receiver>
+   <slot>cameraRotateR()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>370</x>
+     <y>304</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionCounterclockwise_Rotate</sender>
+   <signal>triggered()</signal>
+   <receiver>centralWidget</receiver>
+   <slot>cameraRotateL()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>370</x>
+     <y>304</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionZoom</sender>
+   <signal>triggered()</signal>
+   <receiver>centralWidget</receiver>
+   <slot>setZoomStatus()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>370</x>
+     <y>304</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionSave_As</sender>
+   <signal>triggered()</signal>
+   <receiver>IPEMainClass</receiver>
+   <slot>saveAsImageFile()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>370</x>
+     <y>286</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionAbout</sender>
+   <signal>triggered()</signal>
+   <receiver>IPEMainClass</receiver>
+   <slot>aboutApp()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>370</x>
+     <y>286</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionCurve</sender>
+   <signal>triggered()</signal>
+   <receiver>IPEMainClass</receiver>
+   <slot>setCurve()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>370</x>
+     <y>286</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionEqualization</sender>
+   <signal>triggered()</signal>
+   <receiver>IPEMainClass</receiver>
+   <slot>setHisto()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>370</x>
+     <y>286</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionMatching</sender>
+   <signal>triggered()</signal>
+   <receiver>IPEMainClass</receiver>
+   <slot>setMatch()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>370</x>
+     <y>286</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionAverage</sender>
+   <signal>triggered()</signal>
+   <receiver>IPEMainClass</receiver>
+   <slot>setAve()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>370</x>
+     <y>286</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionMedian</sender>
+   <signal>triggered()</signal>
+   <receiver>IPEMainClass</receiver>
+   <slot>setMed()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>370</x>
+     <y>286</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionRobert</sender>
+   <signal>triggered()</signal>
+   <receiver>IPEMainClass</receiver>
+   <slot>setRobert()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>370</x>
+     <y>286</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionPrewitt</sender>
+   <signal>triggered()</signal>
+   <receiver>IPEMainClass</receiver>
+   <slot>setPrewitt()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>370</x>
+     <y>286</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionSobel</sender>
+   <signal>triggered()</signal>
+   <receiver>IPEMainClass</receiver>
+   <slot>setSobel()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>370</x>
+     <y>286</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionLaplace</sender>
+   <signal>triggered()</signal>
+   <receiver>IPEMainClass</receiver>
+   <slot>setLaplace()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>370</x>
+     <y>286</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionFFT</sender>
+   <signal>triggered()</signal>
+   <receiver>IPEMainClass</receiver>
+   <slot>setDFT()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>370</x>
+     <y>286</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>openImageFile()</slot>
+  <slot>saveImageFile()</slot>
+  <slot>exitApp()</slot>
+  <slot>aboutApp()</slot>
+  <slot>setSelectionStatus()</slot>
+  <slot>setMoveCanvasStatus()</slot>
+  <slot>setRotateStatus()</slot>
+  <slot>setZoomStatus()</slot>
+  <slot>cameraRotateR()</slot>
+  <slot>cameraRotateL()</slot>
+  <slot>saveAsImageFile()</slot>
+  <slot>setCurve()</slot>
+  <slot>setHisto()</slot>
+  <slot>setMatch()</slot>
+  <slot>setDFT()</slot>
+  <slot>setAve()</slot>
+  <slot>setMed()</slot>
+  <slot>setRobert()</slot>
+  <slot>setPrewitt()</slot>
+  <slot>setSobel()</slot>
+  <slot>setLaplace()</slot>
+ </slots>
+</ui>

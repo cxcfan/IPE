@@ -1,0 +1,19 @@
+<RCC>
+    <qresource prefix="/IPEMain">
+        <file>Resources/Icons/OPENIcon.png</file>
+        <file>Resources/Icons/SAVEIcon.png</file>
+        <file>Resources/Icons/EXITIcon.png</file>
+        <file>Resources/Icons/SAVEASIcon.png</file>
+        <file>Resources/Icons/SelectionICON.png</file>
+        <file>Resources/Icons/moveCanvasICON.png</file>
+        <file>Resources/Icons/rotateICON.png</file>
+        <file>Resources/Icons/rotateLICON.png</file>
+        <file>Resources/Icons/rotateRICON.png</file>
+        <file>Resources/Icons/zoomICON.png</file>
+        <file>Resources/Bins/16.bin</file>
+        <file>Resources/Bins/256.bin</file>
+        <file>Resources/Icons/ICON.png</file>
+        <file>Resources/Icons/SAVINGICON.png</file>
+        <file>Resources/Icons/aboutICON.png</file>
+    </qresource>
+</RCC>
