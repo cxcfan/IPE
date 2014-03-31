@@ -1,8 +1,12 @@
+IPE
+======================
+
+Introduction
+----------------------
 IPE is a project for processing digital images. It origins from a project in course. We are adding more features and improving its performance now.
 
-===============================================
 Configuration
-===============================================
+----------------------
 1.Install Visual Studio 2012,Qt 5 and Qt Addin for VS2012.
 2.Config environment variables on Windows
   $(LIB)={path for external libraries}
