@@ -4,4 +4,5 @@ IPE/Debug/
 IPE/Release/
 IPE/x86/
 IPE/x64/
+IPE/GeneratedFiles/
 *.sdf
